@@ -16,3 +16,48 @@ html, body, #root {
 textarea, input {
   font-family: inherit;
 }
+
+/* ---------------------------------------------------------
+   Áreas táctiles accesibles (Android Material Design: 48x48dp mínimo)
+   Se usan en botones de icono para ampliar la zona de toque sin
+   agrandar visualmente el ícono ni romper el layout.
+--------------------------------------------------------- */
+.tap-target {
+  min-width: 48px;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Área táctil secundaria (44x44dp) para íconos en filas compactas
+   donde 48dp forzaría demasiado espacio (p. ej. reacciones de mensaje). */
+.tap-target-sm {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Respeta la Safe Area de Android/iOS (notch, barra de estado, gestos)
+   para que el contenido nunca quede oculto detrás de ellas. */
+.safe-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.safe-left {
+  padding-left: env(safe-area-inset-left, 0px);
+}
+.safe-right {
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
