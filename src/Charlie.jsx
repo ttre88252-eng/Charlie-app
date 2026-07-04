@@ -652,6 +652,10 @@ export default function Charlie() {
         if (perm.speechRecognition !== "granted") {
           const req = await SpeechRecognition.requestPermissions();
           if (req.speechRecognition !== "granted") { alert(t.micUnavailable); return; }
+          // El diálogo de permiso pausa la actividad de Android; si llamamos
+          // a start() justo cuando se está reanudando, la llamada se pierde
+          // y toca presionar el botón una segunda vez. Este respiro evita eso.
+          await new Promise((r) => setTimeout(r, 400));
         }
 
         const baseText = input ? input + " " : "";
